@@ -17,6 +17,7 @@ abstract class _PokemonsStoreBase with Store {
 
   Either<Failure, List<PokemonEntity>>? pokemonsAnswer;
 
+  // retorna uma lista de pokemons
   @action
   Future<List<PokemonEntity>> getPokemons(int offSet) async {
     List<PokemonEntity> pokemons = [];
@@ -32,23 +33,4 @@ abstract class _PokemonsStoreBase with Store {
 
     return pokemons;
   }
-
-  // @action
-  // getPokemons(int offSet) async {
-  //   print("Carregando pokemons");
-  //   pokemonsEntityFuture = ObservableFuture(usecase(offSet));
-
-  //   pokemonsAnswer = await pokemonsEntityFuture;
-
-  //   pokemonsAnswer!.fold((error) => ServerFailure(), (success) {
-  //     offSet = offSet + 20;
-  //     pokemons.addAll(success);
-  //   });
-  // }
-
-  @computed
-  bool get isLastPage => pokemonsAnswer!.length() < 20;
-
-  @computed
-  bool get error => pokemonsAnswer!.isLeft();
 }

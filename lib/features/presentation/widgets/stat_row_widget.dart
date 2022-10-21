@@ -35,6 +35,7 @@ class StatRowWidget extends StatelessWidget {
             backgroundColor: Colors.grey,
             color: statColor,
             value: statPercent,
+            minHeight: 8,
           ),
         )
       ],

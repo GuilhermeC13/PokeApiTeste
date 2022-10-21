@@ -3,7 +3,6 @@ import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:poke_api_teste/core/errors/exceptions.dart';
 import 'package:poke_api_teste/core/http_client/http_client.dart';
-import 'package:poke_api_teste/features/data/datasources/endpoints/poke_api_endpoints.dart';
 import 'package:poke_api_teste/features/data/datasources/pokemon_datasource.dart';
 import 'package:poke_api_teste/features/data/datasources/pokemon_datasource_implementation.dart';
 

@@ -8,7 +8,6 @@ import 'package:poke_api_teste/features/data/repositories/pokemon_repository_imp
 
 import '../../../mocks/datasource_mocks/pokemon_datasource_model.dart';
 import '../../../mocks/models_mocks/pokemon_model_mock.dart';
-import '../../../mocks/pokemon_entity_mock.dart';
 
 void main() {
   late PokemonRepositoryImplementation repositoryImplementation;

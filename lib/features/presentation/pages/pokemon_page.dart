@@ -14,7 +14,6 @@ class PokemonPage extends StatelessWidget {
       Percentuais utilizados nas barras de vida, ataque e defesa
       Pesquisei o hp, ataque e defesa maximo de um pokemon
     */
-
     double hpPercent =
         pokemon.stats!.where((element) => element.name == 'hp').first.baseStat /
             255;
@@ -33,11 +32,15 @@ class PokemonPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
-        title: Text(pokemon.name.toUpperCase()),
+        title: Text(
+          pokemon.name.toUpperCase(),
+          style: textTitleStyle,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 200,
@@ -50,22 +53,44 @@ class PokemonPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  'Peso: ${pokemon.weight} kg',
-                  style: textTitleStyleDark,
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      const WidgetSpan(
+                        child: Icon(Icons.balance, size: 20),
+                      ),
+                      const WidgetSpan(
+                          child: SizedBox(
+                        width: 8,
+                      )),
+                      TextSpan(
+                        text: 'Peso: ${pokemon.weight} kg',
+                        style: textStatsStyleDark,
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  'Altura: ${pokemon.height} m',
-                  style: textTitleStyleDark,
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      const WidgetSpan(
+                        child: Icon(Icons.straighten, size: 20),
+                      ),
+                      const WidgetSpan(
+                          child: SizedBox(
+                        width: 8,
+                      )),
+                      TextSpan(
+                        text: 'Altura: ${pokemon.height} m',
+                        style: textStatsStyleDark,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
             const SizedBox(
               height: 16,
-            ),
-            const Text(
-              'Stats',
-              style: textTitleStyleDark,
             ),
             const SizedBox(
               height: 16,
@@ -103,7 +128,7 @@ class PokemonPage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            const Text('Habilidades: ', style: textTitleStyleDark),
+            const Text('Habilidades', style: textStatsStyleDark),
             const SizedBox(
               height: 8,
             ),

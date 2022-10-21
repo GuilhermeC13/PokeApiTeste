@@ -15,16 +15,26 @@ class PokemonListItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        height: 100,
+        height: double.infinity,
         width: 300,
-        child: Column(
-          children: [
-            Image.network(imageUrl),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(pokemonName.toUpperCase()),
-          ],
+        child: Card(
+          semanticContainer: true,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          margin: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(imageUrl),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(pokemonName.toUpperCase()),
+            ],
+          ),
         ),
       ),
     );

@@ -3,12 +3,15 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mobx/mobx.dart';
+import 'package:poke_api_teste/core/utils/text_utils.dart';
 import 'package:poke_api_teste/features/domain/entities/pokemon_entity.dart';
 import 'package:poke_api_teste/features/presentation/pages/pokemon_page.dart';
 import 'package:poke_api_teste/features/presentation/stores/pokemons_store.dart';
 import 'package:poke_api_teste/features/presentation/widgets/pokemon_list_item_widget.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -19,8 +22,6 @@ class _HomePageState extends State<HomePage> {
   final PagingController<int, PokemonEntity> _pagingController =
       PagingController(firstPageKey: 0);
 
-  ScrollController _scrollController = ScrollController();
-
   @override
   void initState() {
     _loadInitialPokemons();
@@ -30,11 +31,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  // carrega os primeiros 20 pokemons
   _loadInitialPokemons() async {
     final initialPokemons = await store.getPokemons(0);
     _pagingController.appendPage(initialPokemons, 0);
   }
 
+  // atualiza a lista de acordo com o scroll da página
   Future<void> _fetchPage(int pageKey) async {
     try {
       final newItems = await store.getPokemons(pageKey + 20);
@@ -58,14 +61,15 @@ class _HomePageState extends State<HomePage> {
         title: const Center(
             child: Text(
           'Pokemons',
+          style: textTitleStyle,
         )),
       ),
       body: Observer(builder: (_) {
         return store.pokemonsEntityFuture!.status == FutureStatus.fulfilled
             ? PagedGridView<int, PokemonEntity>(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 100 / 150,
-                  crossAxisSpacing: 5,
+                  childAspectRatio: 100 / 120,
+                  crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
                   crossAxisCount: 2,
                 ),
@@ -89,5 +93,11 @@ class _HomePageState extends State<HomePage> {
               );
       }),
     );
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
   }
 }
