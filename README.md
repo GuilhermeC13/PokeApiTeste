@@ -1,16 +1,10 @@
 # poke_api_teste
 
-A new Flutter project.
+Infos:
+O aplicativo lista os pokemons a medida em que é solicitado e ao selecionar um pokemon é mostrado alguns dados.
+Como gerenciamento de estado utilizei o mobx, por ter uma maior familiariadade.
+Arquitetura utilizei a Clean Architecture.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Getting Started:
+Para rodar o projeto é preciso executar o seguinte comando antes, para gerar o arquivo do mobx:
+flutter pub run build_runner build
