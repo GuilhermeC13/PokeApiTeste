@@ -12,17 +12,20 @@ class PokemonListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      width: 300,
-      child: Column(
-        children: [
-          Image.network(imageUrl),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(pokemonName.toUpperCase()),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        height: 100,
+        width: 300,
+        child: Column(
+          children: [
+            Image.network(imageUrl),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(pokemonName.toUpperCase()),
+          ],
+        ),
       ),
     );
   }
