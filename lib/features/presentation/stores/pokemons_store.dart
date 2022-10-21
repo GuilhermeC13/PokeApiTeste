@@ -17,15 +17,10 @@ abstract class _PokemonsStoreBase with Store {
 
   Either<Failure, List<PokemonEntity>>? pokemonsAnswer;
 
-  @observable
-  late List<PokemonEntity> pokemons;
-
-  @observable
-  int offSet = 0;
-
-  @observable
   @action
-  getPokemons() async {
+  Future<List<PokemonEntity>> getPokemons(int offSet) async {
+    List<PokemonEntity> pokemons = [];
+
     pokemonsEntityFuture = ObservableFuture(usecase(offSet));
 
     pokemonsAnswer = await pokemonsEntityFuture;
@@ -34,7 +29,22 @@ abstract class _PokemonsStoreBase with Store {
       offSet = offSet + 20;
       pokemons.addAll(success);
     });
+
+    return pokemons;
   }
+
+  // @action
+  // getPokemons(int offSet) async {
+  //   print("Carregando pokemons");
+  //   pokemonsEntityFuture = ObservableFuture(usecase(offSet));
+
+  //   pokemonsAnswer = await pokemonsEntityFuture;
+
+  //   pokemonsAnswer!.fold((error) => ServerFailure(), (success) {
+  //     offSet = offSet + 20;
+  //     pokemons.addAll(success);
+  //   });
+  // }
 
   @computed
   bool get isLastPage => pokemonsAnswer!.length() < 20;

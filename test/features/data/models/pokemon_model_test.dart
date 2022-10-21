@@ -10,7 +10,7 @@ import '../../../mocks/jsons_mocks/pokemon_json_mock.dart';
 import '../../../mocks/models_mocks/pokemon_model_mock.dart';
 
 void main() {
-  test('should be a subclass of LeagueEntity', () {
+  test('should be a subclass of PokemonEntity', () {
     expect(tPokemonModel, isA<PokemonEntity>());
   });
 
@@ -26,7 +26,7 @@ void main() {
   test('should return a json map containing the proper data', () {
     // Arrange
     final expectedMap = {
-      "height": 20,
+      "height": 7,
       "id": 1,
       "abilities": ["overgrow", "chlorophyll"],
       "name": "bulbasaur",
@@ -48,7 +48,7 @@ void main() {
       "stats": const [
         StatsModel(baseStat: 45, name: 'hp'),
         StatsModel(baseStat: 49, name: 'attack'),
-        StatsModel(baseStat: 45, name: 'defense'),
+        StatsModel(baseStat: 49, name: 'defense'),
         StatsModel(baseStat: 65, name: 'special-attack'),
         StatsModel(baseStat: 65, name: 'special-defense'),
         StatsModel(baseStat: 45, name: 'speed'),

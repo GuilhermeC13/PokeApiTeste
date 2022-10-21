@@ -11,9 +11,10 @@ class PokemonRepositoryImplementation implements PokemonRepository {
   PokemonRepositoryImplementation(this.datasource);
 
   @override
-  Future<Either<Failure, List<PokemonEntity>>> getPokemons(int offSet) async {
+  Future<Either<Failure, List<PokemonEntity>>> getPokemons(int offSet,
+      {int limit = 20}) async {
     try {
-      final result = await datasource.getPokemons(offSet);
+      final result = await datasource.getPokemons(offSet, limit: limit);
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());

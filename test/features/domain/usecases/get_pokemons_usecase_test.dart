@@ -18,7 +18,7 @@ void main() {
     usecase = GetPokemonsUsecase(repository);
   });
 
-  test('should get a list of league entity', () async {
+  test('should get a list of pokemon entity', () async {
     // Arrange
     when(() => repository.getPokemons(0)).thenAnswer((_) async =>
         const Right<Failure, List<PokemonEntity>>(tListPokemonEntity));

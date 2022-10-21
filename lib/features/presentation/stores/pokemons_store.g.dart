@@ -23,52 +23,17 @@ mixin _$PokemonsStore on _PokemonsStoreBase, Store {
           Computed<bool>(() => super.error, name: '_PokemonsStoreBase.error'))
       .value;
 
-  late final _$pokemonsAtom =
-      Atom(name: '_PokemonsStoreBase.pokemons', context: context);
-
-  @override
-  List<PokemonEntity> get pokemons {
-    _$pokemonsAtom.reportRead();
-    return super.pokemons;
-  }
-
-  @override
-  set pokemons(List<PokemonEntity> value) {
-    _$pokemonsAtom.reportWrite(value, super.pokemons, () {
-      super.pokemons = value;
-    });
-  }
-
-  late final _$offSetAtom =
-      Atom(name: '_PokemonsStoreBase.offSet', context: context);
-
-  @override
-  int get offSet {
-    _$offSetAtom.reportRead();
-    return super.offSet;
-  }
-
-  @override
-  set offSet(int value) {
-    _$offSetAtom.reportWrite(value, super.offSet, () {
-      super.offSet = value;
-    });
-  }
-
   late final _$getPokemonsAsyncAction =
       AsyncAction('_PokemonsStoreBase.getPokemons', context: context);
 
   @override
-  ObservableFuture getPokemons() {
-    return ObservableFuture(
-        _$getPokemonsAsyncAction.run(() => super.getPokemons()));
+  Future<List<PokemonEntity>> getPokemons(int offSet) {
+    return _$getPokemonsAsyncAction.run(() => super.getPokemons(offSet));
   }
 
   @override
   String toString() {
     return '''
-pokemons: ${pokemons},
-offSet: ${offSet},
 isLastPage: ${isLastPage},
 error: ${error}
     ''';

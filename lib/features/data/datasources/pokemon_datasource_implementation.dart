@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:poke_api_teste/core/errors/exceptions.dart';
 import 'package:poke_api_teste/core/http_client/http_client.dart';
 import 'package:poke_api_teste/features/data/datasources/endpoints/poke_api_endpoints.dart';
 import 'package:poke_api_teste/features/data/datasources/pokemon_datasource.dart';
@@ -15,10 +16,15 @@ class PokemonDatasourceImplementation implements PokemonDatasource {
     List<PokemonModel> pokemons = [];
 
     for (int i = offSet; i < offSet + limit; i++) {
-      final response = await client.get(PokeApiEndpoints.pokemon(i));
+      final response = await client.get(PokeApiEndpoints.pokemon(i + 1));
+
+      dynamic jsonResponse;
 
       if (response.statusCode == 200) {
-        pokemons.add(PokemonModel.fromJson(jsonDecode(response.body)));
+        jsonResponse = jsonDecode(response.body);
+        pokemons.add(PokemonModel.fromJson(jsonResponse));
+      } else {
+        throw ServerException();
       }
     }
 
